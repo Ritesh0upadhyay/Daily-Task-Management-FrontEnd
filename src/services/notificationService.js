@@ -58,7 +58,7 @@ class NotificationService {
       );
       this.scheduleNotification(
         19,
-        30,
+        35,
         "Complete your task status",
         "Please mark completed tasks."
       );

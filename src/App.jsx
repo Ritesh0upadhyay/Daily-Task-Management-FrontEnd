@@ -10,12 +10,11 @@ import {
   useParams,
 } from "react-router-dom";
 import useAPI from "./hooks/useAPI";
-import Dashboard from "./pages/Dashboard";
+import CombinedDashboard from "./pages/CombinedDashboard";
 import { sendDailySummary } from "./services/emailService";
 import { sendTestEmail } from "./services/emailService";
 import TaskForm from "./components/tasks/TaskForm";
 import Modal from "./components/common/Modal";
-import Tasks from "./pages/Tasks";
 
 function App() {
   // Use API hook to manage tasks from backend
@@ -219,34 +218,13 @@ ${pending.length ? pending.map((t) => `- ${t.title}`).join("\n") : "None"}
             >
               Dashboard
             </NavLink>
-            <NavLink
-              to="/tasks"
-              className={({ isActive }) =>
-                isActive
-                  ? "text-blue-700 border-b-4 border-blue-700"
-                  : "text-gray-600 hover:text-blue-700"
-              }
-            >
-              Tasks
-            </NavLink>
           </nav>
 
           <Routes>
             <Route
               path="/"
               element={
-                <Dashboard
-                  tasks={tasks}
-                  onComplete={handleCompleteTask}
-                  onDelete={handleDeleteTask}
-                  onEdit={(task) => setEditingTask(task)}
-                />
-              }
-            />
-            <Route
-              path="/tasks"
-              element={
-                <Tasks
+                <CombinedDashboard
                   tasks={tasks}
                   onComplete={handleCompleteTask}
                   onDelete={handleDeleteTask}
